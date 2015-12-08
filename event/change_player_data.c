@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <string.h>
 
-struct eventList{
+#define N 20
+
+typedef struct eventList{
   int powerVar;
   int hpVar;
   int defenseVar; // このイベントによる防御力の増減値
 
   char message[255]; // このイベントで表示するメッセージ
-};
+}event_t;
 
-struct pList{
+typedef struct pList{
   char name[20];   // 名前
   int playerNo;    // 番号
 
@@ -20,26 +22,29 @@ struct pList{
 
   struct boardList *place; // 現在どのマスに止まっているか
   struct pList *next; // 次のプレイヤー
-};
+}player_t;
 
-void change_player_data(struct pList *a,struct eventList *event){
+typedef struct event{
+  int random_num;
+  int random_list[N];
+  event_t a[N];
+}event_data;
+
+void change_player_data(player_t *a,event_t *event){
   a->power += event->powerVar;
   a->hp += event->hpVar;
   a->defense += event->defenseVar;
 }
 
-
 int main(void){
-  struct pList player[4];
-  struct eventList event[20];
+  player_t player[4];
+  event_data event;
 
-  event[0].hpVar = event[0].powerVar = event[0].defenseVar = 1;
+  event.a[0].hpVar = event.a[0].powerVar = event.a[0].defenseVar = 1;
   strcpy(player[0].name,"player1");
-  player[0].hp = 5;
-  player[0].power = 5;
-  player[0].defense = 5;
+  player[0].hp = player[0].power = player[0].defense = 5;
 
-  change_player_data(&player[0],&event[0]);
+  change_player_data(&player[0],&event.a[0]);
   printf("%d\n%d\n%d\n",player[0].hp,player[0].power,player[0].defense);
   return 0;
 }
