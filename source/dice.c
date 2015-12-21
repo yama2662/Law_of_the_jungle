@@ -1,4 +1,4 @@
-#include "GV.h"
+#include "../include/GV.h"
 
 // ダイス操作関連
 
