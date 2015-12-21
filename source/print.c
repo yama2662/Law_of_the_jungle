@@ -81,7 +81,6 @@ void print_board(board_t *b)
 			print_place(BOARD_UP+(BOARD_LENGTH*BOARD_HEIGHT) - (i-BOARD_LENGTH*3)*BOARD_HEIGHT, BOARD_LEFT, *(b+1));
 		}
 
-		//mvprintw(5+i, 10, "No:%d POW:%d, HP:%d, DEF:%d", (b+i)->boardNo, (b+i)->event->powerVar, (b+i)->event->hpVar, (b+i)->event->defenseVar);
 	}
 	refresh(); 
 }
@@ -109,4 +108,32 @@ void print_place(int y, int x, board_t b)
 		attrset(COLOR_PAIR(PRINT_BLUE));	
 		mvprintw(y, x, "？");
 	}
+}
+
+// 各プレイヤーのパラメータを表示
+void print_parameter(player_t *p)
+{
+	int i;
+	player_t *put;
+
+	put = p;
+
+	attrset(COLOR_PAIR(PRINT_BLACK));
+
+	for(i=0; i<PLAYER_NUM; i++){
+		print_one_player(PARAMETER_UP, PARAMETER_LEFT+(i*PARAMETER_WIDTH), put);
+		put = put->next;
+	}
+	
+	refresh(); 
+}
+
+//　１プレイヤーの	パラメータを表示
+void print_one_player(int y, int x, player_t *p)
+{
+	mvprintw(y, x, "%s", p->name);
+	mvprintw(y+1, x, "POW:%1d", p->power);
+	mvprintw(y+2, x, "HP :%2d", p->hp);
+	mvprintw(y+3, x, "DEF:%1d", p->defense);
+	mvprintw(y+4, x, "rank:%1d", p->rank);
 }

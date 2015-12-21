@@ -10,6 +10,7 @@ void initPlayer(player_t *p)
   for(i=0; i<PLAYER_NUM; i++){
     strcpy((p+i)->name, "Player");
     (p+i)->name[6] = i + '1';
+    (p+i)->name[7] = '\0';
     (p+i)->playerNo = i;
     (p+i)->power =   INIT_POWER;
     (p+i)->hp =      INIT_HP;
@@ -75,5 +76,4 @@ void setEvent(board_t *b, event_t *e)
   for(i=0; i<BOARD_MAX; i++){
     (b+i)->event = (e+0);
   }
-
 }

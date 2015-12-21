@@ -40,8 +40,9 @@ int main(void)
 
   		clear();
   		print_board(board);
+      print_parameter(player);
   		
-  		timeout(50);
+  		//timeout(50);
 		  cmd = getch();
 
 		  if(cmd == 'z'){

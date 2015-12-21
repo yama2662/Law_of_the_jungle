@@ -34,7 +34,8 @@ void end_ncurses()
 }
 
 //ncursesで色を使う初期化
-void init_mycolor(){
+void init_mycolor()
+{
 	/* start_colorは色属性を使用するときは最初に必ず実行する.
 	 *      initscrの直後に実行するのがよい習慣らしい. */
 	if(has_colors() == FALSE || start_color() == ERR){
