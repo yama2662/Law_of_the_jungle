@@ -42,12 +42,12 @@ int main(void)
   		print_board(board);
   		
   		timeout(50);
-		cmd = getch();
+		  cmd = getch();
 
-		if(cmd == 'z'){
-			game_loop = FALSE;
-		}
-  	}
+		  if(cmd == 'z'){
+			 game_loop = FALSE;
+		  }
+    }
 
 
 

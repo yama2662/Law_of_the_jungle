@@ -72,13 +72,13 @@ void print_board(board_t *b)
 			print_place(BOARD_UP, BOARD_LEFT+(i*BOARD_WIDTH), *(b+i));
 		}
 		else if(7 <= i && i <= 12){
-
+			print_place(BOARD_UP+((i - BOARD_LENGTH)*BOARD_HEIGHT), BOARD_LEFT+(BOARD_LENGTH*BOARD_WIDTH), *(b+i));
 		}
 		else if(13 <= i && i <= 18){
-
+			print_place(BOARD_UP+(BOARD_LENGTH*BOARD_HEIGHT), BOARD_LEFT+(BOARD_LENGTH*BOARD_WIDTH)-((i-BOARD_LENGTH*2)*BOARD_WIDTH), *(b+1));
 		}
 		else{
-
+			print_place(BOARD_UP+(BOARD_LENGTH*BOARD_HEIGHT) - (i-BOARD_LENGTH*3)*BOARD_HEIGHT, BOARD_LEFT, *(b+1));
 		}
 
 		//mvprintw(5+i, 10, "No:%d POW:%d, HP:%d, DEF:%d", (b+i)->boardNo, (b+i)->event->powerVar, (b+i)->event->hpVar, (b+i)->event->defenseVar);
@@ -96,8 +96,8 @@ void print_place(int y, int x, board_t b)
 	}
 	// HP増加マスは黄
 	else if(b.event->hpVar >= 1){
-		attrset(COLOR_PAIR(PRINT_YELLOW));	
-		mvprintw(y, x, "◆");
+		attrset(COLOR_PAIR(PRINT_MAGENTA));	
+		mvprintw(y, x, "●");
 	}
 	// 防御力増加マスは緑
 	else if(b.event->defenseVar >= 1){
@@ -107,6 +107,6 @@ void print_place(int y, int x, board_t b)
 	// ランダムイベントマスは青
 	else if(b.randEvend == TRUE){
 		attrset(COLOR_PAIR(PRINT_BLUE));	
-		mvprintw(y, x, "■");
+		mvprintw(y, x, "？");
 	}
 }

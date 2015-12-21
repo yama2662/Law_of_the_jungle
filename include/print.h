@@ -8,11 +8,12 @@
 #define BOARD_LEFT 5
 #define BOARD_LENGTH 6
 #define BOARD_WIDTH 2
+#define BOARD_HEIGHT 1
 
 #define PRINT_BLACK 1
 #define PRINT_RED 2
 #define PRINT_GREEN 3
-#define PRINT_YELLOW 4
+#define PRINT_MAGENTA 4
 #define PRINT_BLUE 5
 #define BACK_WHITE 6
 
