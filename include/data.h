@@ -2,7 +2,7 @@
 #define DATA_SET_H
 
 #define PLAYER_NUM 4
-
+#define N 20
 // ボードで発生するイベントの構造
 typedef struct eventList{
   int powerVar;  // このイベントによる攻撃力の増減値
