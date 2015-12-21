@@ -12,6 +12,13 @@ typedef struct eventList{
   char message[255]; // このイベントで表示するメッセージ
 } event_t;
 
+//eventラッピング構造体
+typedef struct event{
+  int random_num; //現在のランダムイベント番号
+  int random_list[N]; //ランダムイベント
+  event_t fixed_event[N]; //固定イベント
+}event_data;
+
 // 共通ボードの構造
 typedef struct boardList{
   int boardNo; // 番号
