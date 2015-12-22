@@ -10,15 +10,16 @@ void change_player_data(player_t *player_data,event_t *event){
 
   //以下それぞれの最大値超えを確認
   //また，0以下になっていた場合も0へ修正する
+  //HPは1
   if(player_data->power > MAX_POWER){
     player_data->power = MAX_POWER;
-  }else if(player_data->power < 0){
+  }else if(player_data->power < 1){
     player_data->power = 0;
   }
   if(player_data->hp > MAX_HP){
     player_data->hp = MAX_HP;
-  }else if(player_data->hp < 0){
-    player_data->hp = 0;
+  }else if(player_data->hp < 1){
+    player_data->hp = 1;
   }
   if(player_data->defense >MAX_DEFENSE){
     player_data->defense = MAX_DEFENSE;
