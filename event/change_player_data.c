@@ -13,7 +13,7 @@ void change_player_data(player_t *player_data,event_t *event){
   //HPは1
   if(player_data->power > MAX_POWER){
     player_data->power = MAX_POWER;
-  }else if(player_data->power < 1){
+  }else if(player_data->power < 0){
     player_data->power = 0;
   }
   if(player_data->hp > MAX_HP){
