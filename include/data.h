@@ -20,8 +20,8 @@ typedef struct boardList{
   struct eventList *event; // このマスによるイベント
   struct pList* player[PLAYER_NUM]; // このマスに止まっているプレイヤーのアドレス
 
-  struct boardList *next;  // 次のマス(右回り)
-  struct boardList *prev;  // 前のマス(左回り)
+  struct boardList *next;  // 次のマス(時計回り) 
+  struct boardList *prev;  // 前のマス(反時計回り)
 } board_t;
 
 // プレイヤーコマの構造
@@ -40,16 +40,18 @@ typedef struct pList{
 
 
 // プレイヤー情報初期化
-void initPlayer(player_t *p);
+void init_player(player_t *p);
 
 // ボード情報初期化
-void initBoard(struct boardList *p);
+void init_board(struct boardList *p);
 
 // イベント情報初期化
-void initEvent(event_t *e);
+void init_event(event_t *e);
 
 // ボードの各マスにイベントを設定
-void setEvent(board_t *b, event_t *e);
+void set_event(board_t *b, event_t *e);
 
+// ゲームの初期化
+void init_game(player_t *p, board_t *b);
 
 #endif

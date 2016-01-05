@@ -47,13 +47,15 @@ void init_mycolor()
 	// 黒
 	init_pair(PRINT_BLACK, COLOR_BLACK, COLOR_WHITE);
 	// 赤
-	init_pair(PRINT_RED, COLOR_RED, COLOR_GREEN);
+	init_pair(PRINT_RED, COLOR_RED, COLOR_WHITE);
 	// 黄色
 	init_pair(PRINT_MAGENTA, COLOR_MAGENTA, COLOR_WHITE);
 	// 緑
-	init_pair(PRINT_GREEN, COLOR_GREEN, COLOR_GREEN);
+	init_pair(PRINT_GREEN, COLOR_GREEN, COLOR_WHITE);
 	// 青
-	init_pair(PRINT_BLUE, COLOR_BLUE, COLOR_GREEN);
+	init_pair(PRINT_BLUE, COLOR_BLUE, COLOR_WHITE);
+	// 背景赤、文字黒
+	init_pair(BACK_RED, COLOR_WHITE, COLOR_RED);
 
 	// デフォルト色設定
 	bkgd(COLOR_PAIR(PRINT_BLACK));

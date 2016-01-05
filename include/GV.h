@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <ncurses.h>
 #include <locale.h>
@@ -10,8 +11,7 @@
 #include "dice.h" // 六面ダイス関連
 #include "curses_init.h" // ncurses関連
 #include "print.h" // 表示と入力受付関連
-
-//#include "control.h" // 操作関連
+#include "control.h" // 操作関連
 
 
 #define TRUE 1

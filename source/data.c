@@ -3,7 +3,7 @@
 // データ構造関連ファイル
 
 // プレイヤー情報初期化
-void initPlayer(player_t *p)
+void init_player(player_t *p)
 {
   int i, j;
 
@@ -27,7 +27,7 @@ void initPlayer(player_t *p)
 }
 
 // ボード情報初期化
-void initBoard(board_t *b)
+void init_board(board_t *b)
 {
   int i,j;
 
@@ -53,27 +53,63 @@ void initBoard(board_t *b)
 }
 
 // イベント情報初期化
-void initEvent(event_t *e)
+void init_event(event_t *e)
 {
   int i;
 
-  // 暫定的にHPが+1されるイベントで埋め尽くしておく
+  // 暫定的なイベントを設定
   for(i=0; i<EVENT_MAX; i++){
-    (e+i)->powerVar = 0;
-    (e+i)->hpVar = 1;
-    (e+i)->defenseVar = 0;
 
+    if(i%3 == 0){
+      (e+i)->powerVar = 1;
+      (e+i)->hpVar = 0;
+      (e+i)->defenseVar = 0;
+    }
+
+    if(i%3 == 1){
+      (e+i)->powerVar = 0;
+      (e+i)->hpVar = 1;
+      (e+i)->defenseVar = 0;
+    }
+
+    if(i%3 == 2){
+      (e+i)->powerVar = 0;
+      (e+i)->hpVar = 0;
+      (e+i)->defenseVar = 1;
+    }
     strcpy((e+i)->message, "TEST EVENT");
   }
 }
 
 // ボードの各マスにイベントを設定
-void setEvent(board_t *b, event_t *e)
+void set_event(board_t *b, event_t *e)
 {
   int i;
 
-  // 暫定的にすべてイベント0を設定
+  // 暫定的にイベントを設定
   for(i=0; i<BOARD_MAX; i++){
-    (b+i)->event = (e+0);
+    if(i%3 == 0) (b+i)->event = (e+0);
+    else if(i%3 == 1) (b+i)->event = (e+1);
+    else (b+i)->event = (e+2);
+    
   }
 }
+
+// ゲームの初期化
+// 各プレイヤーをボードの初期位置に配置する
+void init_game(player_t *p, board_t *b)
+{
+  // デバッグ用に適当に作った
+  int i, j;
+
+  for(i=0; i<PLAYER_NUM; i++){
+    b->player[i] = p;
+    p->place = b;
+
+    p = p->next;
+    for(j=0; j<BOARD_LENGTH; j++){
+      b = b->next;
+    }
+  }
+}
+
