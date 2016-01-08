@@ -87,7 +87,6 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 		}
 		now_p->place->player[now_p->playerNo] = now_p;
 
-
 		clear();
 		print_game(p, b, now_p);
 		print_rest_num(i);

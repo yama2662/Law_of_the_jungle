@@ -23,7 +23,7 @@
 #define INIT_RANK 0
 
 #define MAX_POWER 6
-#define MAX_HP 30
+#define MAX_HP 20
 #define MAX_DEFENSE 3
 
 #define DICE_MAX 6
