@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-//#include <ncurses.h>
+#include <ncurses.h>
 #include <locale.h>
 
 #include "data.h" // データ構造関連
@@ -30,4 +30,8 @@
 #define DICE_MIN 1
 
 #define BOARD_MAX 24
+<<<<<<< HEAD
 #define EVENT_MAX 10
+=======
+#define EVENT_MAX 10
+>>>>>>> event_change

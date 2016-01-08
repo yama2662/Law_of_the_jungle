@@ -2,9 +2,9 @@
 #define DATA_SET_H
 
 #define PLAYER_NUM 4
+
 #define FIXEDEVENT_MAX 4
 #define RANDOMEVENT_MAX 6
-
 // ボードで発生するイベントの構造
 typedef struct eventList{
   int powerVar;  // このイベントによる攻撃力の増減値
@@ -20,7 +20,6 @@ typedef struct event{
   event_t random_list[RANDOMEVENT_MAX]; //ランダムイベント
   event_t fixed_event[FIXEDEVENT_MAX]; //固定イベント
 }event_data;
-
 
 // 共通ボードの構造
 typedef struct boardList{
@@ -56,7 +55,7 @@ void initPlayer(player_t *p);
 void initBoard(struct boardList *p);
 
 // イベント情報初期化
-void initEvent(event_data *event);
+void initEvent(event_t *e);
 
 // ボードの各マスにイベントを設定
 void setEvent(board_t *b, event_t *e);
