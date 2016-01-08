@@ -29,14 +29,19 @@ void change_player_data(player_t *player_data,event_t *event){
 }
 
 int main(void){
+  char dmy;
+
   player_t player[4];
   event_data event;
 
-  event.fixed_event[0].hpVar = event.fixed_event[0].powerVar = event.fixed_event[0].defenseVar = 1;
   strcpy(player[0].name,"player1");
   player[0].hp = player[0].power = player[0].defense = 5;
 
-  change_player_data(&player[0],&event.fixed_event[0]);
-  printf("%d\n%d\n%d\n",player[0].hp,player[0].power,player[0].defense);
+  while(1){
+    scanf("%d%c%d%c%d%c",&event.fixed_event[0].hpVar,&dmy,&event.fixed_event[0].powerVar,&dmy,&event.fixed_event[0].defenseVar,&dmy);
+
+    change_player_data(&player[0],&event.fixed_event[0]);
+    printf("%d\n%d\n%d\n",player[0].hp,player[0].power,player[0].defense);
+  }
   return 0;
 }
