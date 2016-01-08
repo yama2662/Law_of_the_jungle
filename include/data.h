@@ -1,28 +1,26 @@
 #ifndef DATA_SET_H
 #define DATA_SET_H
 
-#define MAP_MAX  24
-
-#define DICE_MAX 6
-#define DICE_MIN 1
-
-#define PLAYER_NUM   4
-#define INIT_POWER   3
-#define INIT_HP      10
-#define INIT_DEFENSE 0
-#define INIT_RANK    0
-
-#define TRUE 1
-#define FALSE 0
+#define PLAYER_NUM 4
+#define FIXEDEVENT_MAX 4
+#define RANDOMEVENT_MAX 6
 
 // ボードで発生するイベントの構造
 typedef struct eventList{
   int powerVar;  // このイベントによる攻撃力の増減値
   int hpVar;     // このイベントによるHPの増減値
-  int defenseVar // このイベントによる防御力の増減値
+  int defenseVar; // このイベントによる防御力の増減値
 
   char message[255]; // このイベントで表示するメッセージ
-}
+} event_t;
+
+//eventラッピング構造体
+typedef struct event{
+  int random_num; //現在のランダムイベント番号
+  event_t random_list[RANDOMEVENT_MAX]; //ランダムイベント
+  event_t fixed_event[FIXEDEVENT_MAX]; //固定イベント
+}event_data;
+
 
 // 共通ボードの構造
 typedef struct boardList{
@@ -34,7 +32,7 @@ typedef struct boardList{
 
   struct boardList *next;  // 次のマス(右回り)
   struct boardList *prev;  // 前のマス(左回り)
-}
+} board_t;
 
 // プレイヤーコマの構造
 typedef struct pList{
@@ -48,14 +46,20 @@ typedef struct pList{
 
   struct boardList *place; // 現在どのマスに止まっているか
   struct pList *next; // 次のプレイヤー
-}
+} player_t;
 
 
+// プレイヤー情報初期化
+void initPlayer(player_t *p);
 
+// ボード情報初期化
+void initBoard(struct boardList *p);
 
+// イベント情報初期化
+void initEvent(event_data *event);
 
-
-
+// ボードの各マスにイベントを設定
+void setEvent(board_t *b, event_t *e);
 
 
 #endif
