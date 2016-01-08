@@ -87,6 +87,17 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 		}
 		now_p->place->player[now_p->playerNo] = now_p;
 
+		// マスに他のプレイヤーがいるかチェック
+		for(j=0;j<PLAYER_NUM; j++){
+		  if(j != now_p->playerNo){
+		    if(now_p->place->player[j] != NULL){
+		      mvprintw(CURSOR_UP, CURSOR_LEFT, "Found Enemy! No.%d",j);
+		      usleep(SLEEP_TIME*3);
+		      // ここに戦闘処理関数を書く
+		    }
+		  }
+		}
+​
 		clear();
 		print_game(p, b, now_p);
 		print_rest_num(i);
