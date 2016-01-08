@@ -70,6 +70,9 @@ void print_roll_result(int dice_num);
 // 残り何マス進むかを表示
 void print_rest_num(int num);
 
+// 攻撃選択時のメッセージを表示
+void print_choice_attack(char name[], int left);
+
 // ターン終了メッセージを表示
 void print_end_turn();
 

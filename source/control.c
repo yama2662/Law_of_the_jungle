@@ -27,9 +27,9 @@ char choice_way()
 	int cmd;
 
 	print_choice_cursor(0);
-	do{
-		print_choice_way();
+	print_choice_way();
 
+	do{
 		timeout(-1);
 		cmd = getch();
 		
@@ -70,7 +70,9 @@ int roll_dice()
 // この関数の内部で戦闘処理、マスのイベント処理を行う
 void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *b)
 {
-	int i;
+	int i, j;
+	int cmd;
+	char battle;
 
 	for(i=dice_num-1; i>=0; i--){
 
@@ -87,22 +89,48 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 		}
 		now_p->place->player[now_p->playerNo] = now_p;
 
-		// マスに他のプレイヤーがいるかチェック
-		for(j=0;j<PLAYER_NUM; j++){
-		  if(j != now_p->playerNo){
-		    if(now_p->place->player[j] != NULL){
-		      mvprintw(CURSOR_UP, CURSOR_LEFT, "Found Enemy! No.%d",j);
-		      usleep(SLEEP_TIME*3);
-		      // ここに戦闘処理関数を書く
-		    }
-		  }
-		}
-​
 		clear();
 		print_game(p, b, now_p);
 		print_rest_num(i);
 		usleep(SLEEP_TIME*3);
 
+		// マスに他のプレイヤーがいるかチェック
+		for(j=0; j<PLAYER_NUM; j++){
+
+			if(j != now_p->playerNo){
+				if(now_p->place->player[j] != NULL){
+					print_choice_cursor(0);
+					print_choice_attack(now_p->place->player[j]->name, i);
+
+			      	do{
+						timeout(-1);
+						cmd = getch();
+		
+						if(cmd == KEY_UP){
+							battle = TRUE;
+							print_choice_cursor(0);
+						}
+						else if(cmd == KEY_DOWN){
+							battle = FALSE;
+							print_choice_cursor(1);
+						}
+					}while(cmd != 'z');
+
+					clear();
+					print_game(p, b, now_p);
+					print_rest_num(i);
+
+					if(battle){
+						// ここに戦闘処理関数を書く
+						mvprintw(MESSAGE_UP, MESSAGE_LEFT, "戦闘開始");
+						refresh();
+						usleep(SLEEP_TIME*5);
+					}
+
+		    	}
+		  	}
+
+		}
 	}
 
 	// 止まったマスの処理を行う
@@ -111,7 +139,6 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 	// ターン終了
 	end_turn();
 }
-
 
 // 出番プレイヤーが止まったマスのイベント処理を行う
 void change_parameter(player_t *now_p)

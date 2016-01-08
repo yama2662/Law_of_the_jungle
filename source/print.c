@@ -224,6 +224,14 @@ void print_rest_num(int num)
 	refresh();
 }
 
+// 攻撃選択時のメッセージを表示
+void print_choice_attack(char name[], int left)
+{
+	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "%sがいます！攻撃しますか？　残り %d マス", name, left);
+	mvprintw(CURSOR_UP, CURSOR_LEFT+2, "はい");
+	mvprintw(CURSOR_UP+1, CURSOR_LEFT+2, "いいえ");
+}
+
 // ターン終了メッセージを表示
 void print_end_turn()
 {
