@@ -11,7 +11,7 @@
 #define BOARD_HEIGHT 3	// マスの表示間隔(y座標)
 
 #define PARAMETER_UP 1  	// パラメータ表示の左上(y座標)
-#define PARAMETER_LEFT 10 	// パラメータ表示の左上(x座標)	
+#define PARAMETER_LEFT 10 	// パラメータ表示の左上(x座標)
 #define PARAMETER_WIDTH 15 	// パラメータ表示の間隔(x座標)
 
 #define MESSAGE_UP 33	// メッセージ表示の左上(y座標)
@@ -37,6 +37,7 @@ void print_title();
 // タイトル画面のメニュー表示と入力
 char title_menu(int *cmd);
 
+
 // ゲームに必要な情報を表示
 void print_game(player_t *p, board_t *b, player_t *now_p);
 
@@ -50,7 +51,7 @@ void print_place(int y, int x, board_t b, player_t *now_p);
 void print_parameter(player_t *p);
 
 //　１プレイヤーの	パラメータを表示
-void print_one_player(int y, int x, player_t *p);				
+void print_one_player(int y, int x, player_t *p);
 
 // 手番プレイヤーに印をつける
 void print_now_mark(player_t *now_p);
@@ -75,6 +76,5 @@ void print_choice_attack(char name[], int left);
 
 // ターン終了メッセージを表示
 void print_end_turn();
-
 
 #endif

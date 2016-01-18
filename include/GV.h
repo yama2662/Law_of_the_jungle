@@ -7,6 +7,9 @@
 #include <ncurses.h>
 #include <locale.h>
 
+#include <ncurses.h>
+#include <locale.h>
+
 #include "data.h" // データ構造関連
 #include "dice.h" // 六面ダイス関連
 #include "curses_init.h" // ncurses関連

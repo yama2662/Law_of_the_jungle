@@ -3,6 +3,9 @@
 
 #define PLAYER_NUM 4
 
+#define FIXEDEVENT_MAX 4
+#define RANDOMEVENT_MAX 6
+
 // ボードで発生するイベントの構造
 typedef struct eventList{
   int powerVar;  // このイベントによる攻撃力の増減値
@@ -12,6 +15,13 @@ typedef struct eventList{
   char message[255]; // このイベントで表示するメッセージ
 } event_t;
 
+//eventラッピング構造体
+typedef struct event{
+  int random_num; //現在のランダムイベント番号
+  event_t random_list[RANDOMEVENT_MAX]; //ランダムイベント
+  event_t fixed_event[FIXEDEVENT_MAX]; //固定イベント
+}event_data;
+
 // 共通ボードの構造
 typedef struct boardList{
   int boardNo; // 番号
@@ -20,8 +30,8 @@ typedef struct boardList{
   struct eventList *event; // このマスによるイベント
   struct pList* player[PLAYER_NUM]; // このマスに止まっているプレイヤーのアドレス
 
-  struct boardList *next;  // 次のマス(時計回り) 
-  struct boardList *prev;  // 前のマス(反時計回り)
+  struct boardList *next;  // 次のマス(右回り)
+  struct boardList *prev;  // 前のマス(左回り)
 } board_t;
 
 // プレイヤーコマの構造
