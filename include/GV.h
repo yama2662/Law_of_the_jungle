@@ -10,7 +10,7 @@
 #include "dice.h" // 六面ダイス関連
 #include "curses_init.h" // ncurses関連
 #include "print.h" // 表示と入力受付関連
-
+#include "change_data.h" //プレイヤー反映関係
 //#include "control.h" // 操作関連
 
 
