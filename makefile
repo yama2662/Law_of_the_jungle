@@ -34,6 +34,10 @@ $(TARGET): $(OBJS) $(LIBS)
 
 #オブジェクトファイルを結合
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+#buildフォルダがなかったら自動生成
+	@if [ ! -d $(OBJ_DIR) ]; \
+		then echo "mkdir -p $(OBJ_DIR)"; mkdir -p $(OBJ_DIR); \
+		fi
 	$(CC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
 
 #削除時の指定コマンド オブジェクトファイル系を全て削除
