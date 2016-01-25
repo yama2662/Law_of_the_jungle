@@ -1,18 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include "../include/GV.h"
+#include "../include/import_event.h"
 
-void shuffle(event_data *event);
-
-int main(void){
-  srand((unsigned)time(NULL));
-  event_data event;
-  init_Event(&event);
-  shuffle(&event);
-  return 0;
-}
-
-int init_Event(event_data *event){
+//イベントデータを外部ファイルから読み込みイベントデータ構造体にセットする
+//引数：イベントデータ構造体のポインタ
+//戻り値：なし
+void init_Event(event_data *event){
   FILE *fp;
   FILE *fp2;
   int i;
@@ -20,59 +11,44 @@ int init_Event(event_data *event){
   int d;
 
     if((fp=fopen("fixed_event.txt","r"))==NULL){
-      printf("fixed_event.txt not open");
+      printf("fixed_event.txt can not open");
       exit(1);
     }
     if((fp2=fopen("random_event.txt","r"))==NULL){
-      printf("random_event.txt not open");
+      printf("random_event.txt can not open");
       exit(1);
       }
+    //固定イベントのセット
   for(i=0;i<FIXEDEVENT_MAX;i++){
     fscanf(fp,"%d",&event->fixed_event[i].powerVar);
     fscanf(fp,"%d",&event->fixed_event[i].hpVar);
     fscanf(fp,"%d",&event->fixed_event[i].defenseVar);
     fscanf(fp,"%s",&event->fixed_event[i].message);
-    printf("%d ",event->fixed_event[i].powerVar);
-    printf("%d ",event->fixed_event[i].hpVar);
-    printf("%d\n",event->fixed_event[i].defenseVar);
-    printf("%s\n",event->fixed_event[i].message);
   }
-  printf("\nrandom\n");
+  //ランダムイベントのセット
   for(i=0;i<RANDOMEVENT_MAX;i++){
     fscanf(fp2,"%d",&event->random_list[i].powerVar);
     fscanf(fp2,"%d",&event->random_list[i].hpVar);
     fscanf(fp2,"%d",&event->random_list[i].defenseVar);
     fscanf(fp2,"%s",&event->random_list[i].message);
-    printf("%d ",event->random_list[i].powerVar);
-    printf("%d ",event->random_list[i].hpVar);
-    printf("%d\n",event->random_list[i].defenseVar);
-    printf("%s\n",event->random_list[i].message);
-  }
+    }
 
   fclose(fp);
   fclose(fp2);
-  
-  
-
-  return 0;
 }
 
+//ランダムイベントをシャッフルする
+//引数：イベントデータ構造体のポインタ
+//戻り値：なし
 void shuffle(event_data *event)
 {
   event_t tmp;
   int i,r;
-    
+  //ランダムイベントをランダムイベントの数だけシャッフル
   for(i=0;i<RANDOMEVENT_MAX;i++){
-    r=rand()%RANDOMEVENT_MAX;
+    r=rand()%RANDOMEVENT_MAX;//乱数
     tmp=event->random_list[i];
     event->random_list[i]=event->random_list[r];
     event->random_list[r]=tmp;
     }
-  printf("\nshuffle\n");
- for(i=0;i<RANDOMEVENT_MAX;i++){
-    printf("%d ",event->random_list[i].powerVar);
-    printf("%d ",event->random_list[i].hpVar);
-    printf("%d\n",event->random_list[i].defenseVar);
-    printf("%s\n",event->random_list[i].message);
-  }
 }
