@@ -33,8 +33,9 @@ $(TARGET): $(OBJS) $(LIBS)
 	$(CC) -o $@ $(OBJS) $(OPTION) $(LDFLAGS)
 
 #オブジェクトファイルを結合
+#@ifの固まりはbuildフォルダがなかったら自動生成
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-#buildフォルダがなかったら自動生成
 	@if [ ! -d $(OBJ_DIR) ]; \
 		then echo "mkdir -p $(OBJ_DIR)"; mkdir -p $(OBJ_DIR); \
 		fi
