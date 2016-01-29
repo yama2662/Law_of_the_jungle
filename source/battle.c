@@ -1,4 +1,4 @@
-#include "battle.h"
+#include "../include/GV.h"
 
 /* 戦闘処理 ()*/
 void battle(player_t *attack, player_t *defense)
@@ -54,27 +54,38 @@ void counter(player_t *attack, player_t *defense)
 /* 攻撃時のメッセージ */
 void print_battle_message(char a_name[], char d_name[], int a_offence)
 {
-	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "攻撃力 %d で %s は %s に攻撃を仕掛けた!!", a_offence, a_name, d_name);
+	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "攻撃力%dで%sは%sに攻撃を仕掛けた!!", a_offence, a_name, d_name);
 	refresh();
-	usleep(SLEEP_TIME*3);	
+	usleep(SLEEP_TIME*5);
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                         ");
+    refresh();
 }
 
 /* 攻撃成功時 */
 void print_battle_success(char d_name[], int before_hp, int after_hp)
 {
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                   ");
+    mvprintw(CURSOR_UP, CURSOR_LEFT, "                                               ");
+    refresh();
+
 	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "攻撃は成功した!! ");
 	mvprintw(MESSAGE_UP+1, MESSAGE_LEFT, "%s のHP: %2d -> %2d ", d_name, before_hp, after_hp);
 	refresh();
-	usleep(SLEEP_TIME*3);	
+	usleep(SLEEP_TIME*5);	
 
 }
 
 /* 攻撃失敗時 */
 void print_battle_failure()
 {
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                   ");
+    mvprintw(CURSOR_UP, CURSOR_LEFT, "                                               ");
+    refresh();
 	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "攻撃は失敗した...");
 	refresh();
-	usleep(SLEEP_TIME*3);	
+	usleep(SLEEP_TIME*5);	
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                   ");
+	refresh();
 
 }
 
@@ -83,28 +94,36 @@ void print_counter_message(char a_name[], char d_name[], int d_counter)
 {
 	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "攻撃力 %d で %s は %s に反撃を仕掛けた!!", d_counter, d_name, a_name);
 	refresh();
-	usleep(SLEEP_TIME*3);	
+	usleep(SLEEP_TIME*5);	
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                         ");
+    refresh();
 
 }
 
 /* 反撃成功時 */
 void print_counter_success(char a_name[], int before_pow)
 {
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                   ");
+    mvprintw(CURSOR_UP, CURSOR_LEFT, "                                               ");
+    refresh();
+
 	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "反撃は成功した!");
 	if(before_pow-1 <= 0){
-		mvprintw(MESSAGE_UP+1, MESSAGE_LEFT, "%s は抗った!", a_name);
+		mvprintw(MESSAGE_UP+1, MESSAGE_LEFT, "%s は踏ん張った!", a_name);
 	}else{
 		mvprintw(MESSAGE_UP+1, MESSAGE_LEFT, "%s のPOW: %2d -> %2d", a_name, before_pow, before_pow-1);
 	}
 	refresh();
-	usleep(SLEEP_TIME*3);	
+	usleep(SLEEP_TIME*5);	
 }
 
 /* 反撃失敗時 */
 void print_counter_failure()
 {
-	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "反撃は失敗した");
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                   ");
+    mvprintw(CURSOR_UP, CURSOR_LEFT, "                                               ");
+    refresh();
+    mvprintw(MESSAGE_UP, MESSAGE_LEFT, "反撃は失敗した");
 	refresh();
-	usleep(SLEEP_TIME*3);	
-
+	usleep(SLEEP_TIME*5);	
 }

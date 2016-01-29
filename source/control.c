@@ -72,7 +72,7 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 {
 	int i, j;
 	int cmd;
-	char battle;
+	char btl=TRUE;
 
 	for(i=dice_num-1; i>=0; i--){
 
@@ -107,11 +107,11 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 						cmd = getch();
 		
 						if(cmd == KEY_UP){
-							battle = TRUE;
+							btl = TRUE;
 							print_choice_cursor(0);
 						}
 						else if(cmd == KEY_DOWN){
-							battle = FALSE;
+							btl = FALSE;
 							print_choice_cursor(1);
 						}
 					}while(cmd != 'z');
@@ -120,11 +120,12 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 					print_game(p, b, now_p);
 					print_rest_num(i);
 
-					if(battle){
+					if(btl){
 						// ここに戦闘処理関数を書く
-						mvprintw(MESSAGE_UP, MESSAGE_LEFT, "戦闘開始");
+						mvprintw(MESSAGE_UP, MESSAGE_LEFT, "~~~戦闘開始~~~");
 						refresh();
 						usleep(SLEEP_TIME*5);
+                        battle(now_p, now_p->place->player[j]);
 					}
 
 		    	}
