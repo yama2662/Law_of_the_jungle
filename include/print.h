@@ -77,4 +77,22 @@ void print_choice_attack(char name[], int left);
 // ターン終了メッセージを表示
 void print_end_turn();
 
+/* 攻撃時のメッセージ */
+void print_battle_message(char a_name[], char d_name[], int a_offence);
+
+/* 攻撃成功時 */
+void print_battle_success(char d_name[], int before_hp, int after_hp);
+
+/* 攻撃失敗時 */
+void print_battle_failure();
+
+/* 反撃時 */
+void print_counter_message(char a_name[], char d_name[], int d_counter);
+
+/* 反撃成功時 */
+void print_counter_success(char a_name[], int before_pow);
+
+/* 反撃失敗時 */
+void print_counter_failure();
+
 #endif
