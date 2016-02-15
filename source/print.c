@@ -1,4 +1,4 @@
-#include "../include/GV.h"
+#include "GV.h"
 
 // タイトル画面を表示
 void print_title()
@@ -19,17 +19,17 @@ char title_menu(int *cmd)
 {
   	int ch;
   	int last;
-	  
+
 	last = *cmd;
 
 	// タイトルメニュー表示
-	print_title();	
+	print_title();
 
 
 	// 一定時間入力がなかった場合入力待ちを飛ばす
 	timeout(50);
 	ch = getch();
-	  
+
 	if(ch == KEY_DOWN){
 		(*cmd)++;
 	}
@@ -41,21 +41,21 @@ char title_menu(int *cmd)
 	    *cmd = TITLE_MENU_MAX;
 	}
 	else if(*cmd < TITLE_MENU_MIN){
-	    *cmd = TITLE_MENU_MIN;  
+	    *cmd = TITLE_MENU_MIN;
 	}
 
 	if(last != *cmd)
 	   	clear();
 
-	mvprintw(9+(*cmd), 19,"→");    
+	mvprintw(9+(*cmd), 19,"→");
 
-	refresh(); 
-	 
+	refresh();
+
 	// 決定ボタンが押されたらタイトルを閉じる
 	if(ch == 'z'){
 		return FALSE;
 	}
-	  
+
 	return TRUE;
 }
 
@@ -63,7 +63,7 @@ char title_menu(int *cmd)
 void print_game(player_t *p, board_t *b, player_t *now_p)
 {
   	print_board(b, now_p); 			  // ボード表示
-    print_parameter(p);  // 全プレイヤーのパラメータを表示 
+    print_parameter(p);  // 全プレイヤーのパラメータを表示
     print_now_mark(now_p); // 現在のプレイヤーに印をつける
 }
 
@@ -71,7 +71,7 @@ void print_game(player_t *p, board_t *b, player_t *now_p)
 void print_board(board_t *b, player_t *now_p)
 {
 	// 正方形のマップを表示する
-	
+
 	int i;
 
 	for(i=0; i<BOARD_MAX; i++){
@@ -90,7 +90,7 @@ void print_board(board_t *b, player_t *now_p)
 		}
 
 	}
-	refresh(); 
+	refresh();
 }
 
 // マスの表示
@@ -100,25 +100,25 @@ void print_place(int y, int x, board_t b, player_t *now_p)
 
 	// 戦闘力増加マスは赤
 	if(b.event->powerVar >= 1){
-		attrset(COLOR_PAIR(PRINT_RED));	
+		attrset(COLOR_PAIR(PRINT_RED));
 		mvprintw(y, x, "◆ ◆");
 		mvprintw(y+1, x, "◆ ◆");
 	}
 	// HP増加マスは黄
 	else if(b.event->hpVar >= 1){
-		attrset(COLOR_PAIR(PRINT_MAGENTA));	
+		attrset(COLOR_PAIR(PRINT_MAGENTA));
 		mvprintw(y, x, "● ●");
 		mvprintw(y+1, x, "● ●");
 	}
 	// 防御力増加マスは緑
 	else if(b.event->defenseVar >= 1){
-		attrset(COLOR_PAIR(PRINT_GREEN));	
+		attrset(COLOR_PAIR(PRINT_GREEN));
 		mvprintw(y, x, "■ ■");
 		mvprintw(y+1, x, "■ ■");
 	}
 	// ランダムイベントマスは青
 	else if(b.randEvend == TRUE){
-		attrset(COLOR_PAIR(PRINT_BLUE));	
+		attrset(COLOR_PAIR(PRINT_BLUE));
 		mvprintw(y, x, "？ ?");
 		mvprintw(y+1, x, "？ ?");
 	}
@@ -156,8 +156,8 @@ void print_parameter(player_t *p)
 		print_one_player(PARAMETER_UP, PARAMETER_LEFT+(i*PARAMETER_WIDTH), put);
 		put = put->next;
 	}
-	
-	refresh(); 
+
+	refresh();
 }
 
 //　１プレイヤーの	パラメータを表示
@@ -182,7 +182,7 @@ void print_choice_way(player_t *now_p)
 	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "どちらに進む？");
 	mvprintw(CURSOR_UP, CURSOR_LEFT+2, "時計回り");
 	mvprintw(CURSOR_UP+1, CURSOR_LEFT+2, "反時計回り");
-}		
+}
 
 // 選択時のカーソルを表示する
 void print_choice_cursor(int no)

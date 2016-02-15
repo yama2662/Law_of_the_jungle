@@ -1,4 +1,4 @@
-#include "../include/GV.h"
+#include "GV.h"
 
 //ncursesの初期化
 void init_ncurses(void){
@@ -12,13 +12,13 @@ void init_ncurses(void){
   	}
 
   	// 入力を受け付けられるように
-  	keypad(stdscr,TRUE); 
-  
+  	keypad(stdscr,TRUE);
+
   	// 入力された文字を返さない
   	noecho();
 
 	//カーソルを消す 2以上で再び表示できる。
-  	curs_set(0);  
+  	curs_set(0);
 }
 
 //ncursesを終わらせる時の処理

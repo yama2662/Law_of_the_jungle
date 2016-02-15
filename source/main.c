@@ -1,4 +1,4 @@
-#include "../include/GV.h"
+#include "GV.h"
 
 int main(void)
 {
@@ -20,8 +20,8 @@ int main(void)
 
 
  	/*ncursesの初期化*/
-  	init_ncurses(); 
-  	init_mycolor(); 
+  	init_ncurses();
+  	init_mycolor();
 
 
   	while(loop){
@@ -51,7 +51,7 @@ int main(void)
 
   	while(game_loop){
 
-      now_player = set_player(now_player);  // 次のプレイヤーに手番をセット   
+      now_player = set_player(now_player);  // 次のプレイヤーに手番をセット
       flow = 0;
       turn_loop = TRUE;
 
@@ -63,12 +63,12 @@ int main(void)
         // ターンの流れ
         // どちらに進むか決定 →ダイスを振る →コマを１マスずつ進める
         // →(途中に相手プレイヤーがいた場合は戦闘)
-        // →止まったマスの指示に従う →次のプレイヤーへ  
+        // →止まったマスの指示に従う →次のプレイヤーへ
         switch(flow){
           case 0: // まずどちらに進むかを選択
             way = choice_way();
             break;
-          
+
           case 1: // ダイスを振る
             dice_num = roll_dice();
             break;
@@ -85,10 +85,10 @@ int main(void)
 
         flow++;
       }
-      
+
       /*
       timeout(-1);
-      cmd = getch(); 
+      cmd = getch();
 		  if(cmd == 'e'){
 			 game_loop = FALSE;
 		  }
@@ -98,5 +98,5 @@ int main(void)
 
 
 
-  	end_ncurses();  	
+  	end_ncurses();
 }
