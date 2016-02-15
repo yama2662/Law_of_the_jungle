@@ -1,4 +1,4 @@
-#include "../include/import_event.h"
+#include "import_event.h"
 
 //イベントデータを外部ファイルから読み込みイベントデータ構造体にセットする
 //引数：イベントデータ構造体のポインタ
