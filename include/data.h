@@ -2,6 +2,8 @@
 #define DATA_SET_H
 
 #define PLAYER_NUM 4
+#define FIXEDEVENT_MAX 4
+#define RANDOMEVENT_MAX 6
 
 // ボードで発生するイベントの構造
 typedef struct eventList{
@@ -15,10 +17,9 @@ typedef struct eventList{
 //eventラッピング構造体
 typedef struct event{
   int random_num; //現在のランダムイベント番号
-  int random_list[N]; //ランダムイベント
-  event_t fixed_event[N]; //固定イベント
+  event_t random_list[RANDOMEVENT_MAX]; //ランダムイベント
+  event_t fixed_event[FIXEDEVENT_MAX]; //固定イベント
 }event_data;
-
 
 // 共通ボードの構造
 typedef struct boardList{
@@ -48,16 +49,18 @@ typedef struct pList{
 
 
 // プレイヤー情報初期化
-void initPlayer(player_t *p);
+void init_player(player_t *p);
 
 // ボード情報初期化
-void initBoard(struct boardList *p);
+void init_board(struct boardList *p);
 
 // イベント情報初期化
-void initEvent(event_t *e);
+void init_event(event_t *e);
 
 // ボードの各マスにイベントを設定
-void setEvent(board_t *b, event_t *e);
+void set_event(board_t *b, event_t *e);
 
+// ゲームの初期化
+void init_game(player_t *p, board_t *b);
 
 #endif
