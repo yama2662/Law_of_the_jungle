@@ -23,14 +23,14 @@ void init_Event(event_data *event){
     fscanf(fp1,"%d",&event->fixed_event[i].powerVar);
     fscanf(fp1,"%d",&event->fixed_event[i].hpVar);
     fscanf(fp1,"%d",&event->fixed_event[i].defenseVar);
-    fscanf(fp1,"%s",&event->fixed_event[i].message);
+    fscanf(fp1,"%s",&*event->fixed_event[i].message);
   }
   //ランダムイベントのセット
   for(i=0;i<randomevent_max;i++){
     fscanf(fp2,"%d",&event->random_list[i].powerVar);
     fscanf(fp2,"%d",&event->random_list[i].hpVar);
     fscanf(fp2,"%d",&event->random_list[i].defenseVar);
-    fscanf(fp2,"%s",&event->random_list[i].message);
+    fscanf(fp2,"%s",&*event->random_list[i].message);
   }
 
   fclose(fp1);
