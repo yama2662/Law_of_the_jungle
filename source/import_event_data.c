@@ -57,7 +57,7 @@ int fileline_check(FILE *fp){
   char dummy[LINE_MAX];
   int line=0;
   while ( fgets(dummy,LINE_MAX,fp) != NULL ) {
-    line++;
+    if(dummy[0]!='\n')line++;
   }
   fseek(fp, 0L, SEEK_SET);
   return line;
