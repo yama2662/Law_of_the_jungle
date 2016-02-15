@@ -9,7 +9,8 @@ LDFLAGS =
 #ライブラリの指定
 LIBS    =
 #インクルード系の指定 ここではローカルパスとwindowsようにncursesのパスを別に指定
-INCLUDE = -I./include -I/usr/include/ncurses
+INCLUDE = -I./include -I/usr/include/ncurses -IC:\MinGW\include\ncurses -I/c/MinGW/include/ncurses
+
 #ソースコードフォルダの指定
 SRC_DIR = ./source
 #オブジェクトフォルダの指定 .oファイルをここに置く
