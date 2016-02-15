@@ -1,7 +1,7 @@
 #Makefile
 
 CC = gcc
-OBJS = data.o dice.o curses_init.o print.o control.o main.o
+OBJS = data.o dice.o curses_init.o print.o control.o main.o result.o
 OPTION = -lncurses
 
 Africa : $(OBJS)
