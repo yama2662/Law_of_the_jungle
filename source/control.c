@@ -1,4 +1,4 @@
-#include "../include/GV.h"
+#include "GV.h"
 
 // 手番プレイヤーをセットする
 player_t* set_player(player_t *now_p)
@@ -22,7 +22,7 @@ void init_dice()
 // どちら回りにコマを進めるか選択する
 // TRUE:時計回り FALSE:反時計回り
 char choice_way()
-{	
+{
 	char way = TRUE;
 	int cmd;
 
@@ -32,7 +32,7 @@ char choice_way()
 	do{
 		timeout(-1);
 		cmd = getch();
-		
+
 		if(cmd == KEY_UP){
 			way = TRUE;
 			print_choice_cursor(0);
@@ -105,7 +105,7 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 			      	do{
 						timeout(-1);
 						cmd = getch();
-		
+
 						if(cmd == KEY_UP){
 							btl = TRUE;
 							print_choice_cursor(0);
@@ -159,4 +159,4 @@ void end_turn()
 		timeout(-1);
 		cmd = getch();
 	}while(cmd != 'z');
-}	
+}
