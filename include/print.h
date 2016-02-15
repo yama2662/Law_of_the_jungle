@@ -37,7 +37,6 @@ void print_title();
 // タイトル画面のメニュー表示と入力
 char title_menu(int *cmd);
 
-
 // ゲームに必要な情報を表示
 void print_game(player_t *p, board_t *b, player_t *now_p);
 

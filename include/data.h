@@ -2,7 +2,6 @@
 #define DATA_SET_H
 
 #define PLAYER_NUM 4
-
 #define FIXEDEVENT_MAX 4
 #define RANDOMEVENT_MAX 6
 
