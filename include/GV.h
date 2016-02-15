@@ -13,6 +13,7 @@
 #include "print.h" // 表示と入力受付関連
 #include "control.h" // 操作関連
 #include "battle.h" //戦闘関連
+#include "change_data.h" //プレイヤー反映関係
 
 #define TRUE 1
 #define FALSE 0
