@@ -1,4 +1,4 @@
-#include "../include/GV.h"
+#include "GV.h"
 
 /* 戦闘処理 ()*/
 void battle(player_t *attack, player_t *defense)

@@ -1,4 +1,4 @@
-#include "../include/GV.h"
+#include "GV.h"
 
 // データ構造関連ファイル
 
@@ -48,7 +48,7 @@ void init_board(board_t *b)
       (b+i)->prev = (b+BOARD_MAX-1);
     else
       (b+i)->prev = (b+i-1);
-    
+
   }
 }
 
@@ -91,7 +91,7 @@ void set_event(board_t *b, event_t *e)
     if(i%3 == 0) (b+i)->event = (e+0);
     else if(i%3 == 1) (b+i)->event = (e+1);
     else (b+i)->event = (e+2);
-    
+
   }
 }
 
@@ -112,4 +112,3 @@ void init_game(player_t *p, board_t *b)
     }
   }
 }
-
