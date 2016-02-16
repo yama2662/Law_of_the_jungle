@@ -82,16 +82,30 @@ void init_event(event_t *e)
 }
 
 // ボードの各マスにイベントを設定
-void set_event(board_t *b, event_t *e)
+void set_event(board_t *b, event_data *e, int mapdata[])
 {
   int i;
 
-  // 暫定的にイベントを設定
+  // イベントを設定
+  //mapdataの番号を元にマップデータを指定．
   for(i=0; i<BOARD_MAX; i++){
-    if(i%3 == 0) (b+i)->event = (e+0);
-    else if(i%3 == 1) (b+i)->event = (e+1);
-    else (b+i)->event = (e+2);
-
+    //mapdataが4以下(固定イベント)用,固定イベントデータを設定
+    if(mapdata[i] < 4){
+      (b+i)->event = &e->fixed_event[mapdata[i]];
+      (b+i)->randEvent = FALSE;
+    }
+    //mapdataが4(ランダムイベント)，ランダムイベントを設定
+    //ランダムイベントはrandom_listから毎度参照するので，ここではイベントのポインタを渡さない
+    //その代わりにrandEventをTRUEに設定
+    else if(mapdata[i] == 4){
+      (b+i)->event = NULL;
+      (b+i)->randEvent = TRUE;
+    }
+    //エラー用
+    else{
+      printf("mapdata is fail\n");
+      exit(1);
+    }
   }
 }
 
@@ -110,5 +124,29 @@ void init_game(player_t *p, board_t *b)
     for(j=0; j<BOARD_LENGTH; j++){
       b = b->next;
     }
+  }
+}
+
+//mapdataを外部ファイルから読み込む
+//マップの内容をコンパイル無しで変更できる
+void import_mapdata(int mapdata[]){
+  char dmy[256];
+  int i=0;
+  const int n = 256;
+  FILE *fp;
+
+  //ファイルオープン
+  if((fp=fopen("source/map.txt","r"))==NULL){
+    printf("map.txt can not open");
+    exit(1);
+  }
+  else{
+    //1行分飛ばす(マップデータ編集用のコメントがファイル内に書いてあるので)
+    fgets(dmy,n,fp);
+    //データ読み込み 通常であれば0~4が読み込まれる
+    for(i=0;i<BOARD_MAX;i++){
+      fscanf(fp,"%d",&mapdata[i]);
+    }
+    fclose(fp);
   }
 }

@@ -17,7 +17,7 @@ char choice_way();
 
 // 手番プレイヤーをダイスの目だけ進める
 // この関数の内部で戦闘処理、マスのイベント処理を行う
-void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *b);
+void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *b ,event_data *e);
 
 // 出番プレイヤーが止まったマスのイベント処理を行う
 void change_parameter(player_t *now_p);
