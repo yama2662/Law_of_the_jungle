@@ -15,6 +15,8 @@
 #include "battle.h" //戦闘関連
 #include "change_data.h" //プレイヤー反映関係
 #include "import_event.h"
+#include "result.h" //結果表示関連
+
 
 #define TRUE 1
 #define FALSE 0

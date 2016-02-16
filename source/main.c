@@ -1,10 +1,11 @@
 #include "GV.h"
 
+
 int main(void)
 {
 	char loop = TRUE;
 	char game_loop = FALSE;
-  char turn_loop = FALSE;
+	char turn_loop = FALSE;
 
 	int cmd = 0; // メニューなどの入力
   int flow;  // ターンの進行管理
@@ -20,34 +21,33 @@ int main(void)
 
 
  	/*ncursesの初期化*/
-  	init_ncurses();
-  	init_mycolor();
+  init_ncurses();
+  init_mycolor();
 
 
-  	while(loop){
-		// タイトル画面を表示
-  		loop = title_menu(&cmd);
-  	}
+  while(loop){
+	  // タイトル画面を表示
+    loop = title_menu(&cmd);
+  }
 
-  	switch(cmd){
-  		case 1:
-  			// 初期化処理
-  			init_player(player);
-  			init_board(board);
-  			init_event(event);
-        init_dice();
-
-  			set_event(board, event);
-        init_game(player, board);
-
-  			game_loop = TRUE;
-        now_player = &player[3];
-
-  			break;
-
-  		default:
-  			break;
-  	}
+  switch(cmd){
+	  case 1:
+  	  // 初期化処理
+  	  init_player(player);
+  	  init_board(board);
+  	  init_event(event);
+  	  init_dice();
+  	  
+  	  set_event(board, event);
+  	  init_game(player, board);
+  	  
+  	  game_loop = TRUE;
+  	  now_player = &player[3];
+	    break;
+	  
+    default:
+	    break;
+  }
 
   	while(game_loop){
 
@@ -94,9 +94,12 @@ int main(void)
 		  }
       */
 
+      game_loop = check_end(now_player);
+
     }
-
-
+    disp_result(now_player);
+    usleep(SLEEP_TIME*10);
 
   	end_ncurses();
+
 }

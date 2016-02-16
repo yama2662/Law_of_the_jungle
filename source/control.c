@@ -75,24 +75,24 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 	char btl=TRUE;
 
 	for(i=dice_num-1; i>=0; i--){
-
-		// コマを１つ先のマスに移動
-		now_p->place->player[now_p->playerNo] = NULL;
-
-		// 時計回り
-		if(way == TRUE){
-			now_p->place = now_p->place->next;
-		}
-		// 反時計回り
-		else{
-			now_p->place = now_p->place->prev;
-		}
-		now_p->place->player[now_p->playerNo] = now_p;
-
-		clear();
-		print_game(p, b, now_p);
-		print_rest_num(i);
-		usleep(SLEEP_TIME*3);
+	  
+	 	// コマを１つ先のマスに移動
+	  	now_p->place->player[now_p->playerNo] = NULL;
+	  
+	  	// 時計回り
+	  	if(way == TRUE){
+	    	now_p->place = now_p->place->next;
+	  	}
+	  	// 反時計回り
+	  	else{
+	    	now_p->place = now_p->place->prev;
+	  	}
+	  	now_p->place->player[now_p->playerNo] = now_p;
+	  
+	  	clear();
+	  	print_game(p, b, now_p);
+	  	print_rest_num(i);
+	  	usleep(SLEEP_TIME*3);
 
 		// マスに他のプレイヤーがいるかチェック
 		for(j=0; j<PLAYER_NUM; j++){
@@ -127,16 +127,15 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 						usleep(SLEEP_TIME*5);
                         battle(now_p, now_p->place->player[j]);
 					}
-
 		    	}
-		  	}
-
-		}
+		  	}      
+	    }
 	}
-
+	
 	// 止まったマスの処理を行う
 	change_parameter(now_p);
-
+	//手番プレイヤの順位つけ
+	rank(now_p);
 	// ターン終了
 	end_turn();
 }
