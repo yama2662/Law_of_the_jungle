@@ -102,7 +102,7 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 					print_choice_cursor(0);
 					print_choice_attack(now_p->place->player[j]->name, i);
 
-			      	do{
+					do{
 						timeout(-1);
 						cmd = getch();
 

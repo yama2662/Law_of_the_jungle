@@ -20,9 +20,9 @@ void init_player(player_t *p)
 
     //プレイヤの順番はリング構造 最後プレイヤの次は最初プレイヤ
     if(i < PLAYER_NUM-1)
-      (p+i)->next = (p+i+1);
+    (p+i)->next = (p+i+1);
     else
-      (p+i)->next = p;
+    (p+i)->next = p;
   }
 }
 
@@ -33,21 +33,21 @@ void init_board(board_t *b)
 
   for(i=0; i<BOARD_MAX; i++){
     (b+i)->boardNo = i;
-    (b+i)->randEvend = FALSE;
+    //ランダムイベント判定
     (b+i)->event = FALSE;
     for(j=0; j<PLAYER_NUM; j++)
-      (b+i)->player[j] = NULL;
+    (b+i)->player[j] = NULL;
 
     //マップは双方向リング構造 最後マスの次は最初マス
     if(i < BOARD_MAX-1)
-      (b+i)->next = (b+i+1);
+    (b+i)->next = (b+i+1);
     else
-      (b+i)->next = b;
+    (b+i)->next = b;
     //逆向きも然り
     if(i == 0)
-      (b+i)->prev = (b+BOARD_MAX-1);
+    (b+i)->prev = (b+BOARD_MAX-1);
     else
-      (b+i)->prev = (b+i-1);
+    (b+i)->prev = (b+i-1);
 
   }
 }
