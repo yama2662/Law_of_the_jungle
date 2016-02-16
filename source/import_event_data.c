@@ -9,11 +9,11 @@ void init_Event(event_data *event){
   FILE *fp2;
   int i;
 
-  if((fp1=fopen("fixed_event.txt","r"))==NULL){
+  if((fp1=fopen("source/fixed_event.txt","r"))==NULL){
     printf("fixed_event.txt can not open");
     exit(1);
   }
-  if((fp2=fopen("random_event.txt","r"))==NULL){
+  if((fp2=fopen("source/random_event.txt","r"))==NULL){
     printf("random_event.txt can not open");
     exit(1);
   }
