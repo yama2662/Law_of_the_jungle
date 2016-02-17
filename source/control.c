@@ -75,28 +75,32 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 	char btl=TRUE;
 
 	for(i=dice_num-1; i>=0; i--){
-	  
-	 	// コマを１つ先のマスに移動
-	  	now_p->place->player[now_p->playerNo] = NULL;
-	  
-	  	// 時計回り
-	  	if(way == TRUE){
-	    	now_p->place = now_p->place->next;
-	  	}
-	  	// 反時計回り
-	  	else{
-	    	now_p->place = now_p->place->prev;
-	  	}
-	  	now_p->place->player[now_p->playerNo] = now_p;
-	  
-	  	clear();
-	  	print_game(p, b, now_p);
-	  	print_rest_num(i);
-	  	usleep(SLEEP_TIME*3);
+
+		// コマを１つ先のマスに移動
+		now_p->place->player[now_p->playerNo] = NULL;
+
+		//defenseが1なら0に戻す
+		if(now_p->defense != 0){
+			now_p->defense = 0;
+		}
+		// 時計回り
+		if(way == TRUE){
+			now_p->place = now_p->place->next;
+		}
+		// 反時計回り
+		else{
+			now_p->place = now_p->place->prev;
+		}
+		now_p->place->player[now_p->playerNo] = now_p;
+
+		clear();
+		print_game(p, b, now_p);
+		print_rest_num(i);
+		usleep(SLEEP_TIME*3);
 
 		// マスに他のプレイヤーがいるかチェック
 		for(j=0; j<PLAYER_NUM; j++){
-
+			
 			if(j != now_p->playerNo){
 				if(now_p->place->player[j] != NULL){
 					print_choice_cursor(0);
@@ -133,7 +137,7 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 
 		}
 	}
-	
+
 	// 止まったマスの処理を行う
 	//ランダムイベントフラグ確認
 	//0ならボードのイベントを，1ならランダムイベントを渡す．
