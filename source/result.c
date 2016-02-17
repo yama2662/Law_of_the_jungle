@@ -1,6 +1,6 @@
 #include "../include/GV.h"
 
-//冯蔡の山绩を乖う
+//寢壥傪昞帵
 void disp_result(player_t *p){
   int i;
   player_t *pp=p;
@@ -32,26 +32,29 @@ void disp_result(player_t *p){
 
 
 
-//界疤の疯年を乖う
-//苞眶プレイヤから眶える
+//弴埵晅偗
 void rank(player_t * p){
-  int i,m=0;
+  int a,i,m=0;
   player_t * pp=p;
 
-  for(i=0; i<PLAYER_NUM; i++){
-    if(pp->rank != INIT_RANK)
-      m++;
-    pp=pp->next;
+  //慡堳hp傪妋擣偟弴埵晅偗
+  for (a = 0; a < PLAYER_NUM; a++) {
+	  if (p->hp <= 0) {
+		  for (i = 0; i < PLAYER_NUM; i++) {
+			  if (pp->rank != INIT_RANK)
+				  m++;
+			  pp = pp->next;
+		  }
+		  p->rank = PLAYER_NUM - m;
+	  }
+	  p = p->next;
   }
-
-  p->rank = PLAYER_NUM - m;
-
 }
 
 
 
-//ゲ〖ムの姜位冉年を乖う
-//链镑のHPがゼロなら姜位となる
+//僎乕儉偺廔椆敾掕
+//慡堳巰傫偱偨傜廔椆
 int check_end(player_t * p){
   int i,lose=0;
 
