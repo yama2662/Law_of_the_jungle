@@ -13,7 +13,7 @@ void init_player(player_t *p)
     (p+i)->name[7] = '\0';
     (p+i)->playerNo = i;
     (p+i)->power =   INIT_POWER;
-    (p+i)->hp =      1;
+    (p+i)->hp =      INIT_HP;
     (p+i)->defense = INIT_DEFENSE;
     (p+i)->rank =    INIT_RANK;
     //(p+i)->place = とりあえず後で

@@ -1,6 +1,6 @@
 #include "../include/GV.h"
 
-//·ë²Ì¤ÎÉ½¼¨¤ò¹Ô¤¦
+//·EÌ¤ÎÉ½¼¨¤ò¹Ô¤¦
 void disp_result(player_t *p){
   int i;
   player_t *pp=p;
@@ -33,25 +33,26 @@ void disp_result(player_t *p){
 
 
 //½ç°Ì¤Î·èÄê¤ò¹Ô¤¦
-//°ú¿ô¥×¥ì¥¤¥ä¤«¤é¿ô¤¨¤ë
+//°ú¿ô¥×¥E¤¥ä¤«¤é¿ô¤¨¤E
 void rank(player_t * p){
   int i,m=0;
   player_t * pp=p;
 
-  for(i=0; i<PLAYER_NUM; i++){
-    if(pp->rank != INIT_RANK)
-      m++;
-    pp=pp->next;
+  if (p->hp <= 0) {
+	  for (i = 0; i < PLAYER_NUM; i++) {
+		if (pp->rank != INIT_RANK)
+		  m++;
+		pp = pp->next;
+	  }
+	  p->rank = PLAYER_NUM - m;
   }
-
-  p->rank = PLAYER_NUM - m;
 
 }
 
 
 
 //¥²¡¼¥à¤Î½ªÎ»È½Äê¤ò¹Ô¤¦
-//Á´°÷¤ÎHP¤¬¥¼¥í¤Ê¤é½ªÎ»¤È¤Ê¤ë
+//Á´°÷¤ÎHP¤¬¥¼¥úÀÊ¤é½ªÎ»¤È¤Ê¤E
 int check_end(player_t * p){
   int i,lose=0;
 
