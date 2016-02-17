@@ -3,11 +3,11 @@
 // 手番プレイヤーをセットする
 player_t* set_player(player_t *now_p)
 {
-	player_t *p;
+	player_t *p = now_p;
 
 	// HPが0以下のプレイヤーは飛ばす
 	do{
-		p = now_p->next;
+		p = p->next;
 	}while(p->hp <= 0);
 
 	return p;
@@ -159,6 +159,9 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 		exit(1);
 	}
 	refresh();
+
+	//手番プレイヤの順位付け
+	rank(now_p);
 
 	// ターン終了
 	end_turn();

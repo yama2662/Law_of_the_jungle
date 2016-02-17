@@ -87,7 +87,9 @@ int main(void)
 
 			flow++;
 		}
+		game_loop = check_end(now_player);
 	}
-
+	disp_result(now_player);
+	usleep(SLEEP_TIME*10);
 	end_ncurses();
 }
