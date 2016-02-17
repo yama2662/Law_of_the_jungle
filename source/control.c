@@ -131,14 +131,14 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 						usleep(SLEEP_TIME*5);
 						battle(now_p, now_p->place->player[j]);
 					}
-
 				}
 			}
-
 		}
 	}
 
 	// 止まったマスの処理を行う
+	clear();
+	print_game(p, b, now_p);
 	//ランダムイベントフラグ確認
 	//0ならボードのイベントを，1ならランダムイベントを渡す．
 	if(now_p->place->randEvent == 0){
@@ -159,6 +159,7 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 		exit(1);
 	}
 	refresh();
+
 	// ターン終了
 	end_turn();
 }
