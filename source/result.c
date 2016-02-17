@@ -1,6 +1,6 @@
 #include "../include/GV.h"
 
-//ｷ・ﾌ､ﾎﾉｽｼｨ､ﾔ､ｦ
+//結果を表示
 void disp_result(player_t *p){
   int i;
   player_t *pp=p;
@@ -32,27 +32,29 @@ void disp_result(player_t *p){
 
 
 
-//ｽ邁ﾌ､ﾎｷ霪熙ﾔ､ｦ
-//ｰ惞ﾗ･・､･荀ｫ､鯀ｨ､・
+//順位付け
 void rank(player_t * p){
-  int i,m=0;
+  int a,i,m=0;
   player_t * pp=p;
 
-  if (p->hp <= 0) {
-	  for (i = 0; i < PLAYER_NUM; i++) {
-		if (pp->rank != INIT_RANK)
-		  m++;
-		pp = pp->next;
+  //全員hpを確認し順位付け
+  for (a = 0; a < PLAYER_NUM; a++) {
+	  if (p->hp <= 0) {
+		  for (i = 0; i < PLAYER_NUM; i++) {
+			  if (pp->rank != INIT_RANK)
+				  m++;
+			  pp = pp->next;
+		  }
+		  p->rank = PLAYER_NUM - m;
 	  }
-	  p->rank = PLAYER_NUM - m;
+	  p = p->next;
   }
-
 }
 
 
 
-//･ｲ｡ｼ･爨ﾎｽｪﾎｻﾈｽﾄ熙ﾔ､ｦ
-//ﾁｴｰﾎHP､ｬ･ｼ･惕ﾊ､鮨ｪﾎｻ､ﾈ､ﾊ､・
+//ゲームの終了判定
+//全員死んでたら終了
 int check_end(player_t * p){
   int i,lose=0;
 
