@@ -24,9 +24,9 @@ typedef struct event{
 // 共通ボードの構造
 typedef struct boardList{
   int boardNo; // 番号
-  int randEvend; // ランダムイベントかどうか
+  int randEvent; // ランダムイベントかどうか
 
-  struct eventList *event; // このマスによるイベント
+  event_t *event; // このマスによるイベント
   struct pList* player[PLAYER_NUM]; // このマスに止まっているプレイヤーのアドレス
 
   struct boardList *next;  // 次のマス(右回り)
@@ -58,9 +58,12 @@ void init_board(struct boardList *p);
 void init_event(event_t *e);
 
 // ボードの各マスにイベントを設定
-void set_event(board_t *b, event_t *e);
+void set_event(board_t *b, event_data *e ,int mapdata[]);
 
 // ゲームの初期化
 void init_game(player_t *p, board_t *b);
+
+//マップ種類を外部ファイルから読み込む 引数:マップデータ格納配列
+void import_mapdata(int mapdata[]);
 
 #endif

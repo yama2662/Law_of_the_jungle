@@ -60,15 +60,15 @@ int roll_dice()
 		cmd = getch();
 	}while(cmd != 'z');
 
-  	dice_num = rand()%DICE_MAX+DICE_MIN;
-  	print_roll_result(dice_num);
+	dice_num = rand()%DICE_MAX+DICE_MIN;
+	print_roll_result(dice_num);
 
-  	return dice_num;
+	return dice_num;
 }
 
 // 手番プレイヤーをダイスの目だけ進める
 // この関数の内部で戦闘処理、マスのイベント処理を行う
-void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *b)
+void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *b ,event_data *e)
 {
 	int i, j;
 	int cmd;
@@ -102,7 +102,7 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 					print_choice_cursor(0);
 					print_choice_attack(now_p->place->player[j]->name, i);
 
-			      	do{
+					do{
 						timeout(-1);
 						cmd = getch();
 
@@ -125,17 +125,36 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 						mvprintw(MESSAGE_UP, MESSAGE_LEFT, "~~~戦闘開始~~~");
 						refresh();
 						usleep(SLEEP_TIME*5);
-                        battle(now_p, now_p->place->player[j]);
+						battle(now_p, now_p->place->player[j]);
 					}
-		    	}
-		  	}      
-	    }
+
+				}
+			}
+
+		}
 	}
 	
 	// 止まったマスの処理を行う
-	change_parameter(now_p);
-	//手番プレイヤの順位つけ
-	rank(now_p);
+	//ランダムイベントフラグ確認
+	//0ならボードのイベントを，1ならランダムイベントを渡す．
+	if(now_p->place->randEvent == 0){
+		change_player_data(now_p,now_p->place->event);
+	}
+	else if(now_p->place->randEvent == 1){
+		change_player_data(now_p,&e->random_list[e->random_num]);
+		//ランダムイベント番号を1つ増やす
+		e->random_num += 1;
+
+		//ランダムイベント番号が最大値を超えたらシャッフルし直す．
+		if(e->random_num >= RANDOMEVENT_MAX){
+			shuffle(e);
+		}
+	}//エラー用
+	else{
+		printf("randEvent is not 0 or 1!\n");
+		exit(1);
+	}
+	refresh();
 	// ターン終了
 	end_turn();
 }

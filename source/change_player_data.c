@@ -30,6 +30,12 @@ void change_player_data(player_t *player_data,event_t *event){
   if(player_data->defense >MAX_DEFENSE){
     player_data->defense = MAX_DEFENSE;
   }else if(player_data->defense < 0){
-      player_data->defense = 0;
+    player_data->defense = 0;
   }
+
+  //メッセージを表示
+  mvprintw(MESSAGE_UP, MESSAGE_LEFT, "%s.",event->message);
+  refresh();
+  usleep(SLEEP_TIME*3);
+
 }

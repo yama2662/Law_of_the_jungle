@@ -9,11 +9,11 @@ void init_Event(event_data *event){
   FILE *fp2;
   int i;
 
-  if((fp1=fopen("fixed_event.txt","r"))==NULL){
+  if((fp1=fopen("source/fixed_event.txt","r"))==NULL){
     printf("fixed_event.txt can not open");
     exit(1);
   }
-  if((fp2=fopen("random_event.txt","r"))==NULL){
+  if((fp2=fopen("source/random_event.txt","r"))==NULL){
     printf("random_event.txt can not open");
     exit(1);
   }
@@ -35,6 +35,8 @@ void init_Event(event_data *event){
 
   fclose(fp1);
   fclose(fp2);
+  //初期化時にシャッフルを同時進行
+  shuffle(event);
 }
 
 //ランダムイベントをシャッフルする
@@ -44,6 +46,9 @@ void shuffle(event_data *event)
 {
   event_t tmp;
   int i,r;
+
+  //ランダムイベント番号初期化
+  event->random_num = 0;
   //ランダムイベントをランダムイベントの数だけシャッフル
   for(i=0;i<RANDOMEVENT_MAX;i++){
     r=rand()%RANDOMEVENT_MAX;//乱数
