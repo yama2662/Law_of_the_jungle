@@ -63,6 +63,7 @@ void set_event(board_t *b, event_data *e ,int mapdata[]);
 // ゲームの初期化
 void init_game(player_t *p, board_t *b);
 
+//マップ種類を外部ファイルから読み込む 引数:マップデータ格納配列
 void import_mapdata(int mapdata[]);
 
 #endif

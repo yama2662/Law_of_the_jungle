@@ -127,7 +127,8 @@ void init_game(player_t *p, board_t *b)
   }
 }
 
-//mapdataを外部ファイルから読み込む
+//マップ種類を外部ファイルから読み込む
+//引数:マップデータ格納配列
 //マップの内容をコンパイル無しで変更できる
 void import_mapdata(int mapdata[]){
   char dmy[256];
