@@ -34,7 +34,7 @@ void change_player_data(player_t *player_data,event_t *event){
   }
 
   //メッセージを表示
-  mvprintw(MESSAGE_UP, MESSAGE_LEFT, "%s.",event->message);
+  mvprintw(MESSAGE_UP, MESSAGE_LEFT, "%s",event->message);
   refresh();
   usleep(SLEEP_TIME*3);
 
