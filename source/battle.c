@@ -5,6 +5,7 @@ void battle(player_t *attack, player_t *defense)
 {
   int attack_offense;
   int pip;
+  int after_hp;
 
   /* 自分の攻撃力計算 */
   attack_offense = attack->power - defense->defense;
@@ -17,8 +18,21 @@ void battle(player_t *attack, player_t *defense)
 
   if(pip <= attack_offense){
     /* 出た目の数だけ相手のhpを削る */
-    print_battle_success(defense->name, defense->hp, defense->hp-pip);
-    defense->hp -= pip;
+    after_hp = defense->hp - pip;
+    if(after_hp < 0) after_hp = 0;
+
+    print_battle_success(defense->name, defense->hp, after_hp);
+    
+    defense->hp = after_hp;
+
+    /* 相手のHPを0にした場合撃破メッセージを表示 */
+    /* さらにゲームから除外する */
+    if(defense->hp == 0){
+      print_defeat(defense->name);
+
+      defense->place->player[defense->playerNo] = NULL;
+    }
+
   }else{
     /* 襲撃失敗. 反撃 */
     print_battle_failure();
