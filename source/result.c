@@ -39,13 +39,15 @@ void rank(player_t * p){
 
   //全員hpを確認し順位付け
   for (a = 0; a < PLAYER_NUM; a++) {
-	  if (p->hp <= 0) {
-		  for (i = 0; i < PLAYER_NUM; i++) {
-			  if (pp->rank != INIT_RANK)
-				  m++;
-			  pp = pp->next;
+	  if (p->rank == INIT_RANK) {
+		  if (p->hp <= 0) {
+			  for (i = 0; i < PLAYER_NUM; i++) {
+				  if (pp->rank != INIT_RANK)
+					  m++;
+				  pp = pp->next;
+			  }
+			  p->rank = PLAYER_NUM - m;
 		  }
-		  p->rank = PLAYER_NUM - m;
 	  }
 	  p = p->next;
   }
@@ -64,7 +66,7 @@ int check_end(player_t * p){
     p = p->next;
   }
 
-  if(lose == PLAYER_NUM)
+  if(lose == PLAYER_NUM-1)
     return FALSE;
   else
     return TRUE;
