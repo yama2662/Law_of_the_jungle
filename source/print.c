@@ -268,6 +268,18 @@ void print_battle_success(char d_name[], int before_hp, int after_hp)
 
 }
 
+/* 撃破時のメッセージ */
+void print_defeat(char d_name[])
+{
+  mvprintw(MESSAGE_UP, MESSAGE_LEFT, "                                                   ");
+  mvprintw(CURSOR_UP, CURSOR_LEFT, "                                               ");
+  refresh();
+
+  mvprintw(MESSAGE_UP, MESSAGE_LEFT, "%s は倒れた！！", d_name);
+  refresh();
+  usleep(SLEEP_TIME*5);  
+}
+
 /* 攻撃失敗時 */
 void print_battle_failure()
 {

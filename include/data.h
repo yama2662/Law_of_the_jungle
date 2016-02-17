@@ -19,7 +19,7 @@ typedef struct event{
   int random_num; //現在のランダムイベント番号
   event_t random_list[RANDOMEVENT_MAX]; //ランダムイベント
   event_t fixed_event[FIXEDEVENT_MAX]; //固定イベント
-}event_data;
+} event_data;
 
 // 共通ボードの構造
 typedef struct boardList{

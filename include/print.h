@@ -84,6 +84,9 @@ void print_battle_message(char a_name[], char d_name[], int a_offence);
 /* 攻撃成功時 */
 void print_battle_success(char d_name[], int before_hp, int after_hp);
 
+/* 撃破時のメッセージ */
+void print_defeat(char d_name[]);
+
 /* 攻撃失敗時 */
 void print_battle_failure();
 
