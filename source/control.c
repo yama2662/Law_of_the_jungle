@@ -159,14 +159,6 @@ void move_player(char way, int dice_num, player_t *now_p, player_t *p, board_t *
 	end_turn();
 }
 
-// 出番プレイヤーが止まったマスのイベント処理を行う
-void change_parameter(player_t *now_p)
-{
-	mvprintw(MESSAGE_UP, MESSAGE_LEFT, "しかし何も起こらなかった。");
-	refresh();
-	usleep(SLEEP_TIME*3);
-}
-
 // ターン終了時の処理
 void end_turn()
 {

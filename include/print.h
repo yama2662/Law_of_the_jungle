@@ -25,7 +25,9 @@
 #define PRINT_GREEN 3
 #define PRINT_MAGENTA 4
 #define PRINT_BLUE 5
-#define BACK_RED 6
+#define PRINT_CYAN 6
+#define BACK_RED 7
+
 
 #define SLEEP_TIME 300000
 

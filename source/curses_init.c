@@ -54,6 +54,9 @@ void init_mycolor()
 	init_pair(PRINT_GREEN, COLOR_GREEN, COLOR_WHITE);
 	// 青
 	init_pair(PRINT_BLUE, COLOR_BLUE, COLOR_WHITE);
+	// シアン
+	init_pair(PRINT_CYAN, COLOR_CYAN, COLOR_WHITE);
+
 	// 背景赤、文字黒
 	init_pair(BACK_RED, COLOR_WHITE, COLOR_RED);
 

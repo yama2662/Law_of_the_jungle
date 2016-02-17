@@ -123,9 +123,9 @@ void print_place(int y, int x, board_t b, player_t *now_p)
     mvprintw(y+1, x, "■ ■");
   }//何もないマス 要色変更
   else{
-    attrset(COLOR_PAIR(PRINT_GREEN));
-    mvprintw(y, x, "△ △");
-    mvprintw(y+1, x, "△ △");
+    attrset(COLOR_PAIR(PRINT_CYAN));
+    mvprintw(y, x, "▲ ▲");
+    mvprintw(y+1, x, "▲ ▲");
   }
 
   // プレイヤーがこのマスにいる場合,
