@@ -22,7 +22,7 @@ void battle(player_t *attack, player_t *defense)
     if(after_hp < 0) after_hp = 0;
 
     print_battle_success(defense->name, defense->hp, after_hp);
-    
+
     defense->hp = after_hp;
 
     /* 相手のHPを0にした場合撃破メッセージを表示 */

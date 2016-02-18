@@ -10,7 +10,7 @@ void print_title()
 
   mvprintw(10,  21, "はじめる");
   mvprintw(11,  21, "やめる");
-  
+
   refresh();
 }
 
@@ -277,7 +277,7 @@ void print_defeat(char d_name[])
 
   mvprintw(MESSAGE_UP, MESSAGE_LEFT, "%s は倒れた！！", d_name);
   refresh();
-  usleep(SLEEP_TIME*5);  
+  usleep(SLEEP_TIME*5);
 }
 
 /* 攻撃失敗時 */
