@@ -1,13 +1,13 @@
 #ifndef RESULT_H
 #define RESULT_H
 
-//·ë²Ì¤ÎÉ½¼¨
+//çµæœã®è¡¨ç¤º
 void disp_result(player_t *p);
 
-//½ç°ÌÉÕ¤±
+//é †ä½ä»˜ã‘
 void rank(player_t * p);
 
-//¥²¡¼¥à½ªÎ»È½Äê
+//ã‚²ãƒ¼ãƒ çµ‚äº†åˆ¤å®š
 int check_end(player_t * p);
 
 #endif

@@ -1,6 +1,6 @@
 #include "../include/GV.h"
 
-//Œ‹‰Ê‚ğ•\¦
+//çµæœã‚’è¡¨ç¤º
 void disp_result(player_t *p){
   int i;
   int cmd;
@@ -36,12 +36,12 @@ void disp_result(player_t *p){
 
 
 
-//‡ˆÊ•t‚¯
+//é †ä½ä»˜ã‘
 void rank(player_t * p){
   int a,i,m=0;
   player_t * pp=p;
 
-  //‘Sˆõhp‚ğŠm”F‚µ‡ˆÊ•t‚¯
+  //å…¨å“¡hpã‚’ç¢ºèªã—é †ä½ä»˜ã‘
   for (a = 0; a < PLAYER_NUM; a++) {
 	  if (p->rank == INIT_RANK) {
 		  if (p->hp <= 0) {
@@ -59,8 +59,8 @@ void rank(player_t * p){
 
 
 
-//ƒQ[ƒ€‚ÌI—¹”»’è
-//‘Sˆõ€‚ñ‚Å‚½‚çI—¹
+//ã‚²ãƒ¼ãƒ ã®çµ‚äº†åˆ¤å®š
+//å…¨å“¡æ­»ã‚“ã§ãŸã‚‰çµ‚äº†
 int check_end(player_t * p){
   int i,lose=0;
 

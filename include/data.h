@@ -52,7 +52,7 @@ typedef struct pList{
 void init_player(player_t *p);
 
 // ボード情報初期化
-void init_board(struct boardList *p);
+void init_board(board_t *p);
 
 // イベント情報初期化
 void init_event(event_t *e);
