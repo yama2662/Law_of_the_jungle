@@ -8,13 +8,12 @@
 #include <locale.h>
 
 #include "data.h" // データ構造関連
-#include "dice.h" // 六面ダイス関連
 #include "curses_init.h" // ncurses関連
 #include "print.h" // 表示と入力受付関連
 #include "control.h" // 操作関連
 #include "battle.h" //戦闘関連
-#include "change_data.h" //プレイヤー反映関係
-#include "import_event.h"
+#include "change_data.h" //プレイヤー反映関連
+#include "import_event.h" // イベントデータ読み込み関連
 #include "result.h" //結果表示関連
 
 
