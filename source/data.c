@@ -16,7 +16,6 @@ void init_player(player_t *p)
     (p+i)->hp =      INIT_HP;
     (p+i)->defense = INIT_DEFENSE;
     (p+i)->rank =    INIT_RANK;
-    //(p+i)->place = とりあえず後で
 
     //プレイヤの順番はリング構造 最後プレイヤの次は最初プレイヤ
     if(i < PLAYER_NUM-1)
@@ -52,35 +51,6 @@ void init_board(board_t *b)
   }
 }
 
-// イベント情報初期化
-void init_event(event_t *e)
-{
-  int i;
-
-  // 暫定的なイベントを設定
-  for(i=0; i<EVENT_MAX; i++){
-
-    if(i%3 == 0){
-      (e+i)->powerVar = 1;
-      (e+i)->hpVar = 0;
-      (e+i)->defenseVar = 0;
-    }
-
-    if(i%3 == 1){
-      (e+i)->powerVar = 0;
-      (e+i)->hpVar = 1;
-      (e+i)->defenseVar = 0;
-    }
-
-    if(i%3 == 2){
-      (e+i)->powerVar = 0;
-      (e+i)->hpVar = 0;
-      (e+i)->defenseVar = 1;
-    }
-    strcpy((e+i)->message, "TEST EVENT");
-  }
-}
-
 // ボードの各マスにイベントを設定
 void set_event(board_t *b, event_data *e, int mapdata[])
 {
@@ -113,7 +83,6 @@ void set_event(board_t *b, event_data *e, int mapdata[])
 // 各プレイヤーをボードの初期位置に配置する
 void init_game(player_t *p, board_t *b)
 {
-  // デバッグ用に適当に作った
   int i, j;
 
   for(i=0; i<PLAYER_NUM; i++){

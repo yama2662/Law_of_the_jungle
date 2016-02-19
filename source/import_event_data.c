@@ -4,7 +4,7 @@
 //引数：イベントデータ構造体のポインタ
 //戻り値：なし
 
-void init_Event(event_data *event){
+void init_event(event_data *event){
   FILE *fp1;
   FILE *fp2;
   int i;

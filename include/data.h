@@ -54,9 +54,6 @@ void init_player(player_t *p);
 // ボード情報初期化
 void init_board(board_t *p);
 
-// イベント情報初期化
-void init_event(event_t *e);
-
 // ボードの各マスにイベントを設定
 void set_event(board_t *b, event_data *e ,int mapdata[]);
 
