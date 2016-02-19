@@ -36,7 +36,7 @@ int main(void)
 		import_mapdata(mapdata); //マップデータ読み込み
 		init_player(player); //プレイヤー初期化
 		init_board(board); //ボード初期化
-		init_Event(&event); //イベント初期化
+		init_event(&event); //イベント初期化
 		init_dice(); //ダイス初期化
 
 		set_event(board, &event ,mapdata); //読み込んだデータをボードにセット
